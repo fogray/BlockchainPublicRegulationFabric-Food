@@ -1,63 +1,68 @@
 # BlockchainPublicRegulationFabric-Food
 
-In this journey, we capture the regulatory compliance logic for the Food Supplier Verification Program in a smart contract deployed on a business network.
+在这个旅程中，我们通过一个部署在业务网络上的智能合约，获得食品供应商验证计划的合规逻辑。
 
-This business network defines:
+这个业务网络定义：
 
-**Participants:**
-`Supplier` `Importer` `Retailer` `Regulator`
+**参与者：** `Supplier` `Importer` `Retailer` `Regulator`
 
-**Assets:**
-`ProductListingContract`
+**资产：** `ProductListingContract`
 
-**Transactions:**
-`createProductListing` `transferListing` `checkProducts` `updateExemptedList`
+**交易：** `createProductListing` `transferListing` `checkProducts` `updateExemptedList`
 
-Initially, the supplier will transfer the food products to an importer who verifies whether the supplier, country, and food type all match with the correct identifiers. At port of entry, the supplier is checked against a list of known suppliers in a database (managed by the regulator). If the supplier is of type exempt, then the products are then transferred to the retailer. If the supplier is of type non-exempt, then the products are checked against a list of known food products in the database (managed by the regulator). If the food is exempt product then transfer it to the retailer. If the food is a non-exempt product, the importer must conduct a harms analysis (either independently, or using a third-party). The supplier provides the harms analysis report to the regulator. The regulator reviews compliance attestation and transfers the products to the retailer.
+最初，供应商将把食品移交给进口商，进口商验证供应商、国家和食品类型是否都与正确的标识符匹配。在入境口岸，将供应商与数据库中已知供应商的名单进行核对（由监管机构管理）。如果供应商属于豁免类型，则产品将被转移给零售商。如果供应商属于非豁免类型，则根据数据库中已知食品列表（由监管机构管理）对产品进行检查。如果食品是豁免的产品，然后将其转移给零售商。如果食品是非豁免产品，进口商必须进行危害分析（独立或使用第三方）。供应商向监管机构提供危害分析报告。
 
-The `createProductListing` function is called when an `createProductListing` transaction is submitted. The logic allows a supplier to create a `ProductListingContract` asset.
+当一个`createProductListing`交易被递交时，`createProductListing`函数被调用。该逻辑允许供应商创建一个`ProductListingContract`资产。
 
-The `transferListing` function is called when a `transferListing` transaction is submitted by the owner of `ProductListingContract`. It is submitted either by `Supplier` to transfer `ProductListingContract` to `Importer` or by `Importer` to transfer `ProductListingContract` to `Retailer` when the exempt check for the products is completed.
+当一个`transferListing`交易由`ProductListingContract`所有者递交时，`transferListing`函数被调用。这个递交，要么`Supplier`移交`ProductListingContract`给`Importer`，要么在完成了产品的豁免检查时由`Importer`移交`ProductListingContract`给`Retailer`。
 
-The `checkProducts` function is called when a `checkProducts` transaction is submitted by the `Supplier` to perform the exempt check for the products present in the `ProductListingContract`. The status of `ProductListingContract` contract will change to `CHECKCOMPLETED` if all all the products are exempted else the status will change to `HAZARDANALYSISCHECKREQ`. `HAZARDANALYSISCHECKREQ` means the `Supplier` needs to provide Hazard Analysis report for the products. After submitting the report `Supplier` performs the `checkProducts` transaction to complete the exempt check for the products.
+当`Supplier`递交一个`checkProducts`交易时，`checkProducts`函数被调用来对`ProductListingContract`中的产品执行豁免检查。如果`ProductListingContract`合同中所有商品都是免检的，合同状态会变为`CHECKCOMPLETED`，否则合同状态会变为`HAZARDANALYSISCHECKREQ`。`HAZARDANALYSISCHECKREQ`意味着`Supplier`需要为产品提供危害分析报告。递交报告后，`Supplier`执行`checkProducts`交易，来完成对产品的豁免检查。
 
-The `updateExemptedList` function is called when a `updateExemptedList` transaction is submitted by the `Regulator` to update the list of exempted Orgs ids and Product ids.
+当`Regulator`递交`updateExemptedList`交易时，`updateExemptedList`函数被调用，用来更新免检组织id和免检产品id的清单。
 
-## Included Components
-* Hyperledger Fabric
-* Hyperledger Composer
+## 包含的组件
 
-## Included technologies
-* Blockchain
-* Containers
-* Cloud
+- Hyperledger Fabric
 
-## Application Workflow Diagram
-![Application Workflow](images/archi.png)
+- Hyperledger Composer
 
-* Install Hyperledger Composer development tools
-* Configure and start Hyperledger Fabric network
-* Generate the Business Network Archive file
-* Deploy the Business Network Archive using Composer Playground
-* (Alternative method) Deploy the Business Network Archive on Hyperledger Composer running locally
+## 包括技术
 
+- Blockchain
 
-## Steps
-1. [Generate the Business Network Archive (BNA)](#1-generate-the-business-network-archive-bna)
-2. [Deploy the Business Network Archive using Composer Playground](#2-deploy-the-business-network-archive-using-composer-playground)
-3. [Deploy the Business Network Archive on Hyperledger Composer running locally](#3-deploy-the-business-network-archive-on-hyperledger-composer-running-locally)
+- 容器
 
+- 云计算
 
-## 1. Generate the Business Network Archive (BNA)
+## 应用工作流程图
 
-To check that the structure of the files is valid, you can now generate a Business Network Archive (BNA) file for your business network definition. The BNA file is the deployable unit -- a file that can be deployed to the Composer runtime for execution.
+[![应用程序工作流](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/archi.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/archi.png)
 
-Use the following command to generate the network archive:
-```bash
+- 安装Hyperledger Composer开发工具
+- 配置并启动Hyperledger Fabric网络
+- 生成业务网络档案文件
+- 使用Composer Playground部署业务网络档案
+- （备选方法）在本地运行的Hyperledger Composer上部署业务网络档案
+
+## 步骤
+
+1. [生成业务网络档案（BNA）](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/README.md#1-generate-the-business-network-archive-bna)
+2. [用Composer Playground部署业务网络档案](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/README.md#2-deploy-the-business-network-archive-using-composer-playground)
+3. [在本地运行的Hyperledger Composer上部署业务网络档案](README.md#3-deploy-the-business-network-archive-on-hyperledger-composer-running-locally)
+
+## 1.生成业务网络档案（BNA）
+
+要检查文件的结构是否有效，现在可以为你的业务网络定义生成业务网络档案（BNA）文件。BNA文件是可部署的单元 - 可以部署到Composer运行时进行执行。
+
+使用以下命令生成网络档案：
+
+```
 npm install
 ```
-You should see the following output:
-```bash
+
+你应该看到以下输出：
+
+```
 Creating Business Network Archive
 
 Looking for package.json of Business Network Definition
@@ -73,14 +78,17 @@ Written Business Network Definition Archive file to
 
 Command succeeded
 ```
-The `composer archive create` command has created a file called `food-supply.bna` in the `dist` folder.
 
-You can test the business network definition against the embedded runtime that stores the state of 'the blockchain' in-memory in a Node.js process.
-From your project working directory, open the file test/foodTest.js and run the following command:
-```
+`composer archive create`命令会在`dist`文件夹下创建了一个叫`food-supply.bna`的文件。
+
+你可以利用嵌入式运行时测试业务网络定义，该运行时在Node.js进程的内存中存储“区块链”状态。从你的项目工作目录中，打开文件`test/foodTest.js`并运行以下命令：
+
+```bash
 npm test
 ```
-You should see the following output :
+
+你应该看到以下输出：
+
 ```
 > food-supply@0.0.1 test /Users/ishan/Documents/git-demo/BlockchainPublicRegulationFabric-Food
 > mocha --recursive
@@ -95,28 +103,25 @@ You should see the following output :
   4 passing (1s)
 ```
 
-## 2. Deploy the Business Network Archive using Composer Playground
-Open [Composer Playground](http://composer-playground.mybluemix.net/), by default the Basic Sample Network is imported.
-If you have previously used Playground, be sure to clear your browser local storage by running `localStorage.clear()` in your browser Console.
+## 2.使用Composer Playground部署业务网络档案
 
-Now import the `food-supply.bna` file and click on deploy button.
-<p align="center">
-  <img width="100" height="50" src="images/importbtn.png">
-</p>
+打开 [Composer Playground](http://composer-playground.mybluemix.net/)，默认情况下将导入基本示例网络。如果你之前使用过Playground，请务必通过在浏览器控制台中运行`localStorage.clear()`清除浏览器本地存储。
 
->You can also setup [Composer Playground locally](https://hyperledger.github.io/composer/installing/using-playground-locally.html).
+现在导入`food-supply.bna`文件并点击部署按钮。
 
-You will see the following:
-<p align="center">
-  <img width="400" height="200" src="images/composerplayground.png">
-</p>
+[![img](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/importbtn.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/importbtn.png)
 
-To test your Business Network Definition, first click on the **Test** tab:
+> 你也可以在本地安装[Composer Playground](https://hyperledger.github.io/composer/installing/using-playground-locally.html)。
 
-In the `Supplier` participant registry, create a new participant. Make sure you click on the `Supplier` tab on the far left-hand side first and click on `Create New Participant` button.
-<p align="center">
-  <img width="200" height="100" src="images/createparticipantbtn.png">
-</p>
+你将看到以下内容：
+
+[![img](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/composerplayground.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/composerplayground.png)
+
+要测试你的业务网络定义，首先单击**测试**选项卡：
+
+在`Supplier`参与者库中，创建一个新的参与者。确保你先点击`Supplier`最左边的标签，然后点击`Create New Participant`按钮。
+
+[![img](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/createparticipantbtn.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/createparticipantbtn.png)
 
 ```
 {
@@ -127,7 +132,8 @@ In the `Supplier` participant registry, create a new participant. Make sure you 
 }
 ```
 
-Similarly create retailer, regulator, importer participants by selecting the respective tabs.
+同样通过选择相应的选项卡来创建零售商、监管者、进口商参与者。
+
 ```
 {
   "$class": "composer.food.supply.Retailer",
@@ -135,7 +141,6 @@ Similarly create retailer, regulator, importer participants by selecting the res
   "products": []
 }
 ```
-
 ```
 {
   "$class": "composer.food.supply.Regulator",
@@ -145,7 +150,6 @@ Similarly create retailer, regulator, importer participants by selecting the res
   "exemptedProductIds": ["prodA","prodB"]
 }
 ```
-
 ```
 {
   "$class": "composer.food.supply.Importer",
@@ -153,24 +157,21 @@ Similarly create retailer, regulator, importer participants by selecting the res
 }
 ```
 
-Now we are ready to add **Access Control**. Do this by first clicking on the `admin` tab to issue **new ids** to the participants and add the ids to the wallet.
-Please follow the instructions as shown in the images below:
+现在我们准备添加**访问控制**。首先点击`admin`选项卡，向参与者颁发**新的ID**并将ID添加到钱包。请按照以下图片中的说明进行操作：
 
-![Admin Tab](images/admintab.png)
+[![管理员标签](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/admintab.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/admintab.png)
 
-Click on  `Issue New Id` button to create new Ids.
-![Generate New Id](images/generateNewId.png)
+点击 `Issue New Id`按钮来创建新的ID。 [![生成新的ID](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/generateNewId.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/generateNewId.png)
 
-Click on `Add to my Wallet` link to add the newly generated Id to the `Wallet`.
-![Add to Wallet](images/addtowallet.png)
+点击`Add to my Wallet`链接将新生成的ID添加到`Wallet`。 [![添加到钱包](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/addtowallet.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/addtowallet.png)
 
-![Ids to Wallet](images/idstowallet.png)
+[![Ids到钱包](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/idstowallet.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/idstowallet.png)
 
-Select the `Supplier id` from `Wallet tab` tab. Now click on the `test tab` to perform `createProductListing` and `transferListing` transactions.
+选择`Supplier id`来自`Wallet tab`标签。现在点击`test tab`执行`createProductListing`和`transferListing`交易。
 
-![Select ID](images/selectid.png)
+[![选择ID](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/selectid.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/selectid.png)
 
-Now click on `Submit Transaction` button and select `createProductListing` transaction from the dropdown, to create a product listing for the list of products. `products` array element contains information about the `productid` and `quantity` separated by `,`.
+现在点击`Submit Transaction`按钮并从下拉列表中选择`createProductListing`交易，来为产品列表创建一个产品列表。`products`数组元素包含有关`productid`和`quantity`的信息（用逗号`,`分隔）。
 
 ```
 {
@@ -180,12 +181,13 @@ Now click on `Submit Transaction` button and select `createProductListing` trans
 }
 ```
 
-After executing the transaction successfully, `productListing` will be created in `ProductListingContract` registry.
+成功执行交易后，`productListing`将在`ProductListingContract`库中创建。
 
-![Product Listing](images/productListing.png)
+[![产品清单](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/productListing.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/productListing.png)
 
-Similarly, submit a `transferListing` transaction to transfer the productListing to `Importer`.
-> `ProductListingContractID`is the id of the ProductListingContract copied from the `ProductListingContract` registry.
+同样，递交一个`transferListing`交易来将产品列表转移到`Importer`。
+
+> `ProductListingContractID`是从`ProductListingContract`库复制的产品列表合同的ID 。
 
 ```
 {
@@ -196,7 +198,7 @@ Similarly, submit a `transferListing` transaction to transfer the productListing
 }
 ```
 
-`importerA` will be the owner of `ProductListingContract` and the status will be `EXEMPTCHECKREQ`. Also, productListing will be removed from `Supplier` view. Now select the `importer` id from the `Wallet tab` and submit `checkProducts` transaction to perform the exempt check for the products.
+`importerA`将是`ProductListingContract`的所有者，状态将是`EXEMPTCHECKREQ`。另外，产品列表将从`Supplier`视图中移除。现在从`Wallet tab`中选择`importer`id ，递交`checkProducts`交易来对产品执行豁免检查。
 
 ```
 {
@@ -206,7 +208,7 @@ Similarly, submit a `transferListing` transaction to transfer the productListing
 }
 ```
 
-Successful execution of transaction will change the status of productListing to `CHECKCOMPLETED`. Now perform `transferListing` transaction to transfer the products to retailer.
+成功执行交易将会将产品列表的状态更改为`CHECKCOMPLETED`。现在执行`transferListing`交易将产品移交给零售商。
 
 ```
 {
@@ -217,19 +219,18 @@ Successful execution of transaction will change the status of productListing to 
 }
 ```
 
-The transaction will the change the owner of `ProductListingContract` and update the list of products in `Retailer` registry. Select the `Retailer` id from the `Wallet tab` and view the updated registries.
+交易将改变`ProductListingContract`的所有者，并更新`Retailer`库中的产品列表。从`Wallet tab`中选择`Retailer`ID 并查看更新的库。
 
-![Product Listing](images/retailerPL.png)
+[![产品清单](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/retailerPL.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/retailerPL.png)
 
-![Retailer Registry](images/retailer.png)
+[![零售商注册](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/retailer.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/retailer.png)
 
+> 你也可以使用默认的`System user`执行所有操作，因为我们在`permissions.acl`中有一个规则来允许`System user`执行所有访问。
 
-> You can also use the default `System user` to perform all the actions as we have a rule in `permissions.acl` to permit all access `System user`.
+## 3.在本地运行的Hyperledger Composer上部署业务网络存档
 
-## 3. Deploy the Business Network Archive on Hyperledger Composer running locally
+请按照[说明](https://github.com/IBM/BlockchainNetwork-CompositeJourney#2-starting-hyperledger-fabric)启动本地Fabric 。现在将目录切换到包含`food-supply.bna`文件的`dist`文件夹并输入：
 
-Please start the local Fabric using the [instructions](https://github.com/IBM/BlockchainNetwork-CompositeJourney#2-starting-hyperledger-fabric).
-Now change directory to the `dist` folder containing `food-supply.bna` file and type:
 ```
 cd dist
 composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName food-supply
@@ -237,12 +238,14 @@ composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdmi
 composer card import --file networkadmin.card
 ```
 
-You can verify that the network has been deployed by typing:
+你可以通过输入以下内容来验证网络是否已部署：
+
 ```
 composer network ping --card admin@food-supply
 ```
 
-You should see the the output as follows:
+你应该看到如下输出：
+
 ```
 The connection to the network was successfully tested: food-supply
 	version: 0.16.0
@@ -251,37 +254,40 @@ The connection to the network was successfully tested: food-supply
 Command succeeded
 ```
 
-To create the REST API we need to launch the `composer-rest-server` and tell it how to connect to our deployed business network.
-Now launch the server by changing directory to the `BlockchainPublicRegulationFabric-Food` folder and type:
-```bash
+要创建REST API，需要启动`composer-rest-server`并告诉它如何连接到我们的已部署业务网络。现在通过改变目录到`BlockchainPublicRegulationFabric-Food`文件夹来启动服务器，并输入：
+
+```
 cd ..
 composer-rest-server
 ```
 
-Answer the questions posed at startup. These allow the composer-rest-server to connect to Hyperledger Fabric and configure how the REST API is generated.
-* Enter `admin@food-supply` as the card name.
-* Select `never use namespaces` when asked whether to use namespaces in the generated API.
-* Select `No` when asked whether to secure the generated API.
-* Select `Yes` when asked whether to enable event publication.
-* Select `No` when asked whether to enable TLS security.
+回答在启动时提出的问题。这些允许composer-rest-server连接到Hyperledger Fabric并配置REST API的生成方式。
 
-**Test REST API**
+- 输入`admin@food-supply`卡片名称。
+- 在询问是否在生成的API中使用命名空间时选择`never use namespaces`。
+- 当被问及是否需要保护生成的API选择`No`。
+- 当被问及是否启用事件发布时选择`Yes`。
+- 当询问是否启用TLS安全时选择`No`。
 
-If the composer-rest-server started successfully you should see these two lines are output:
+**测试REST API**
+
+如果composer-rest-server启动成功，你应该看到这两行输出：
+
 ```
 Web server listening at: http://localhost:3000
 Browse your REST API at http://localhost:3000/explorer
 ```
 
-Open a web browser and navigate to http://localhost:3000/explorer
+打开Web浏览器并导航到[http://localhost:3000/explorer](http://localhost:3000/explorer)
 
-You should see the LoopBack API Explorer, allowing you to inspect and test the generated REST API. Follow the instructions to test Business Network Definition as mentioned above in the composer section.
+你应该看到LoopBack API浏览器，允许你查看和测试生成的REST API。按照上述在Composer部分的说明测试业务网络定义，。
 
+## 其他资源
 
-## Additional Resources
-* [Hyperledger Fabric Docs](http://hyperledger-fabric.readthedocs.io/en/latest/)
-* [Hyperledger Composer Docs](https://hyperledger.github.io/composer/introduction/introduction.html)
-
+- [Hyperledger Fabric文档](http://hyperledger-fabric.readthedocs.io/en/latest/)
+- [Hyperledger Composer文档](https://hyperledger.github.io/composer/introduction/introduction.html)
 
 ## License
-[Apache 2.0](LICENSE)
+
+[Apache 2.0](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/LICENSE)
+
