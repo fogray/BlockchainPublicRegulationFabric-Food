@@ -51,7 +51,9 @@
 ## 步骤
 
 1. [生成业务网络档案（BNA）](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/README.md#1-generate-the-business-network-archive-bna)
+
 2. [用Composer Playground部署业务网络档案](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/README.md#2-deploy-the-business-network-archive-using-composer-playground)
+
 3. [在本地运行的Hyperledger Composer上部署业务网络档案](README.md#3-deploy-the-business-network-archive-on-hyperledger-composer-running-locally)
 
 ## 1.生成业务网络档案（BNA）
