@@ -73,8 +73,8 @@ transaction transferListing{
   --> ProductListingContract productListing
 }
 
-// Importer --> Regulator w/o 风险分析，即初始检查。 成功就移交资产到零售商，失败就发回给进口商，要求提交风险分析报告
-// Importer --> Regulator 带有风险分析。 假设进口商已经提交风险分析报告给监管者。成功就移交资产到零售商。
+// 进口商 --> 监管机构 w/o 危害分析，即初始检查。 成功就移交资产到零售商，失败就发回给进口商，要求提交危害分析报告
+// 进口商 --> 监管机构 带有危害分析。 假定进口商已经提交危害分析报告给监管机构。成功就移交资产到零售商。
 transaction  checkProducts{
   --> Regulator regulator
   --> ProductListingContract productListing
