@@ -16,7 +16,7 @@
 
 当一个`transferListing`交易由`ProductListingContract`所有者递交时，`transferListing`函数被调用。这个递交，要么`Supplier`移交`ProductListingContract`给`Importer`，要么在完成了产品的豁免检查时由`Importer`移交`ProductListingContract`给`Retailer`。
 
-当`Supplier`递交一个`checkProducts`交易时，`checkProducts`函数被调用来对`ProductListingContract`中的产品执行豁免检查。如果`ProductListingContract`合同中所有商品都是免检的，合同状态会变为`CHECKCOMPLETED`，否则合同状态会变为`HAZARDANALYSISCHECKREQ`。`HAZARDANALYSISCHECKREQ`意味着`Supplier`需要为产品提供危害分析报告。递交报告后，`Supplier`执行`checkProducts`交易，来完成对产品的豁免检查。
+当`Supplier`递交一个`checkProducts`交易时，`checkProducts`函数被调用来对`ProductListingContract`中的产品执行豁免检查。如果`ProductListingContract`合约中所有商品都是免检的，合约状态会变为`CHECKCOMPLETED`，否则合约状态会变为`HAZARDANALYSISCHECKREQ`。`HAZARDANALYSISCHECKREQ`意味着`Supplier`需要为产品提供危害分析报告。递交报告后，`Supplier`执行`checkProducts`交易，来完成对产品的豁免检查。
 
 当`Regulator`递交`updateExemptedList`交易时，`updateExemptedList`函数被调用，用来更新免检组织id和免检产品id的清单。
 
@@ -193,7 +193,7 @@ npm test
 
 同样，递交一个`transferListing`交易来将产品列表转移到`Importer`。
 
-> `ProductListingContractID`是从`ProductListingContract`库复制的产品列表合同的ID 。
+> `ProductListingContractID`是从`ProductListingContract`库复制的产品列表合约的ID 。
 
 ```
 {
