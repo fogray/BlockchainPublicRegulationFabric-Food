@@ -39,9 +39,13 @@
 [![应用程序工作流](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/archi.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/archi.png)
 
 - 安装Hyperledger Composer开发工具
+
 - 配置并启动Hyperledger Fabric网络
+
 - 生成业务网络档案文件
+
 - 使用Composer Playground部署业务网络档案
+
 - （备选方法）在本地运行的Hyperledger Composer上部署业务网络档案
 
 ## 步骤
@@ -264,9 +268,13 @@ composer-rest-server
 回答在启动时提出的问题。这些允许composer-rest-server连接到Hyperledger Fabric并配置REST API的生成方式。
 
 - 输入`admin@food-supply`卡片名称。
+
 - 在询问是否在生成的API中使用命名空间时选择`never use namespaces`。
+
 - 当被问及是否需要保护生成的API选择`No`。
+
 - 当被问及是否启用事件发布时选择`Yes`。
+
 - 当询问是否启用TLS安全时选择`No`。
 
 **测试REST API**
@@ -285,6 +293,7 @@ Browse your REST API at http://localhost:3000/explorer
 ## 其他资源
 
 - [Hyperledger Fabric文档](http://hyperledger-fabric.readthedocs.io/en/latest/)
+
 - [Hyperledger Composer文档](https://hyperledger.github.io/composer/introduction/introduction.html)
 
 ## License
