@@ -13,7 +13,7 @@
  */
 
 /**
-  * A library of standard reusable types
+  * 一个标准的重用类型库
   */
 
 namespace composer.base
@@ -33,7 +33,7 @@ concept ContactDetails {
 }
 
 /**
- * A concept for a simple street address
+ * 一个简单街道地址的概念
  */
 concept Address {
   o String city optional
