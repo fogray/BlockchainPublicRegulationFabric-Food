@@ -14,11 +14,11 @@
 
 当一个`createProductListing`交易被递交时，`createProductListing`函数被调用。该逻辑允许供应商创建一个`ProductListingContract`资产。
 
-当一个`transferListing`交易由`ProductListingContract`所有者递交时，`transferListing`函数被调用。这个递交，要么`Supplier`移交`ProductListingContract`给`Importer`，要么在完成了产品的豁免检查时由`Importer`移交`ProductListingContract`给`Retailer`。
+当一个`transferListing`交易由`ProductListingContract`所有者递交时，`transferListing`函数被调用。这个递交，要么由供应商(`Supplier`)移交`ProductListingContract`给进口商(`Importer`)，要么在完成了产品的豁免检查时由进口商(`Importer`)移交`ProductListingContract`给零售商(`Retailer`)。
 
-当`Supplier`递交一个`checkProducts`交易时，`checkProducts`函数被调用来对`ProductListingContract`中的产品执行豁免检查。如果`ProductListingContract`合约中所有商品都是免检的，合约状态会变为`CHECKCOMPLETED`，否则合约状态会变为`HAZARDANALYSISCHECKREQ`。`HAZARDANALYSISCHECKREQ`意味着`Supplier`需要为产品提供危害分析报告。递交报告后，`Supplier`执行`checkProducts`交易，来完成对产品的豁免检查。
+当供应商(`Supplier`)递交一个`checkProducts`交易时，`checkProducts`函数被调用来对`ProductListingContract`中的产品执行豁免检查。如果`ProductListingContract`合约中所有商品都是免检的，合约状态会变为`CHECKCOMPLETED`，否则合约状态会变为`HAZARDANALYSISCHECKREQ`。`HAZARDANALYSISCHECKREQ`意味着供应商(`Supplier`)需要为产品提供危害分析报告。递交报告后，供应商(`Supplier`)执行`checkProducts`交易，来完成对产品的豁免检查。
 
-当`Regulator`递交`updateExemptedList`交易时，`updateExemptedList`函数被调用，用来更新免检组织id和免检产品id的清单。
+当监管机构(`Regulator`)递交`updateExemptedList`交易时，`updateExemptedList`函数被调用，用来更新免检组织id和免检产品id的清单。
 
 ## 包含的组件
 
