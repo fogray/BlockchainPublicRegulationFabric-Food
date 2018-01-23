@@ -63,6 +63,7 @@
 使用以下命令生成网络档案：
 
 ```
+git clone https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food && cd BlockchainPublicRegulationFabric-Food
 npm install
 ```
 
@@ -87,7 +88,7 @@ Command succeeded
 
 `composer archive create`命令会在`dist`文件夹下创建了一个叫`food-supply.bna`的文件。
 
-你可以利用嵌入式运行时测试业务网络定义，该运行时在Node.js进程的内存中存储“区块链”状态。从你的项目工作目录中，打开文件`test/foodTest.js`并运行以下命令：
+你可以利用嵌入式运行时测试业务网络定义，该运行时在Node.js进程的内存中存储“区块链”状态。从你的项目工作目录中运行以下命令(它会打开文件`test/foodTest.js`并执行)：
 
 ```bash
 npm test
@@ -108,6 +109,7 @@ npm test
 
   4 passing (1s)
 ```
+这表示测试通过了。
 
 ## 2.使用Composer Playground部署业务网络档案
 
@@ -115,9 +117,9 @@ npm test
 
 现在导入`food-supply.bna`文件并点击部署按钮。
 
-[![img](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/importbtn.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/importbtn.png)
+[![img](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/importbtn.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/importbtn.png)  
 
-> 你也可以在本地安装[Composer Playground](https://hyperledger.github.io/composer/installing/using-playground-locally.html)。
+> 你也可以在本地安装[Composer Playground](https://wbwangk.github.io/ComposerDocs/installing_using-playground-locally/)。
 
 你将看到以下内容：
 
@@ -125,9 +127,9 @@ npm test
 
 要测试你的业务网络定义，首先单击**测试**选项卡：
 
-在`Supplier`参与者库中，创建一个新的参与者。确保你先点击`Supplier`最左边的标签，然后点击`Create New Participant`按钮。
+在参与者`Supplier`库中，创建一个新的参与者。确保你先点击最左边的`Supplier`选项卡，然后点击`Create New Participant`按钮。
 
-[![img](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/createparticipantbtn.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/createparticipantbtn.png)
+[![img](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/createparticipantbtn.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/createparticipantbtn.png)  
 
 ```
 {
@@ -138,7 +140,7 @@ npm test
 }
 ```
 
-同样通过选择相应的选项卡来创建零售商、监管机构、进口商参与者。
+同样通过选择最左边相应的选项卡来分别创建另外三个参与者：零售商、监管机构和进口商。
 
 ```
 {
@@ -163,7 +165,7 @@ npm test
 }
 ```
 
-现在我们准备添加**访问控制**。首先点击`admin`选项卡，向参与者颁发**新的ID**并将ID添加到钱包。请按照以下图片中的说明进行操作：
+现在我们准备添加**访问控制**。首先点击右上角的`admin`选项卡，向参与者颁发**新的ID**并将ID添加到钱包。请按照以下图片中的说明进行操作：
 
 [![管理员标签](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/admintab.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/admintab.png)
 
@@ -173,11 +175,11 @@ npm test
 
 [![Ids到钱包](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/idstowallet.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/idstowallet.png)
 
-选择`Supplier id`来自`Wallet tab`标签。现在点击`test tab`执行`createProductListing`和`transferListing`交易。
+在钱包中选择`supplier`点击`Use now`来切换当前用户为供应商。现在点击顶部`Test`选项卡执行`createProductListing`和`transferListing`交易。
 
 [![选择ID](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/selectid.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/selectid.png)
 
-现在点击`Submit Transaction`按钮并从下拉列表中选择`createProductListing`交易，来为产品列表创建一个产品列表。`products`数组元素包含有关`productid`和`quantity`的信息（用逗号`,`分隔）。
+现在点击`Submit Transaction`按钮并从下拉列表中选择`createProductListing`交易，来为产品列表创建一个产品列表。`products`数组元素包含有关产品编码(`productid`)和数量(`quantity`)的信息（用逗号`,`分隔）。
 
 ```
 {
@@ -187,13 +189,13 @@ npm test
 }
 ```
 
-成功执行交易后，`productListing`将在`ProductListingContract`库中创建。
+成功执行交易后，`productListing`将在`ProductListingContract`库中创建。上述数据表示供应商A提供了A和B两个产品，数量分别是5和2。
 
 [![产品清单](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/raw/master/images/productListing.png)](https://github.com/wbwangk/BlockchainPublicRegulationFabric-Food/blob/master/images/productListing.png)
 
-同样，递交一个`transferListing`交易来将产品列表转移到`Importer`。
+同样，递交一个`transferListing`交易来将产品列表转移到进口商(`Importer`)。
 
-> `ProductListingContractID`是从`ProductListingContract`库复制的产品列表合约的ID 。
+> 把`<ProductListingContractID>`替换成从`ProductListingContract`库中复制的产品列表合约的ID。这个ID是随机生成的。
 
 ```
 {
